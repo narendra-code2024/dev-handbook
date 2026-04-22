@@ -1,0 +1,8 @@
+# Obsidian (ignore machine-specific stuff)
+.obsidian/workspace.json
+.obsidian/cache/
+.obsidian/workspace
+
+# OS junk
+.DS_Store
+Thumbs.db

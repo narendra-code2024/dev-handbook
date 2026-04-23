@@ -3,162 +3,189 @@
 
 ## Phase 1: Foundations
 
----
-
 ### 1. Introduction to Java
 
 - What is Java?
-- Java Editions (Java SE, Java EE, Java ME)
-- Java Features: Simple, Object-Oriented, Platform Independent, Secured, Robust, Multithreaded, Compiled and Interpreted
-- Java as a Software/Hardware Platform
-- Compilation and Interpretation: How it happens in Java (`javac` and `java` commands)
+- Java Editions
+    - Java SE
+    - Jakarta EE
+    - Java ME
+- Java Features
+    - Object-Oriented
+    - Platform Independent
+    - Secured
+    - Multithreaded
+    - Compiled and Interpreted
 
-### 2. JDK, JRE, JVM & Memory Model
+### 2. JDK, JRE & JVM
 
 - JDK vs JRE vs JVM
-- JVM Architecture
+    - Compilation Flow (`.java` → `javac` → `.class` → JVM)
+    - "Write Once, Run Anywhere"
+- JVM Architecture (high-level)
     - ClassLoader Subsystem
-        - Loading (Bootstrap, Extension, Application ClassLoader)
-        - Linking (Verification, Preparation, Resolution)
-        - Initialization
     - Runtime Data Areas
-        - Method Area (Class metadata, static variables)
-            - Metaspace (Java 8+ implementation of Method Area)
-        - Heap (Instance variables and objects live here)
-        - Stack (Local variables and method calls live here)
-        - PC Register
-        - Native Method Stack
     - Execution Engine
-        - Interpreter
-        - JIT Compiler
-        - Garbage Collector
-    - Java Native Interface (JNI)
-- Object Creation & Memory in Action
-    - Object Creation Flow: Class Loading → Memory Allocation in Heap → Default Initialization → Constructor Execution
-    - Stack vs Heap: Example with Method Calls
-
-> **Deep JVM internals** (ClassLoader phases, GC algorithms, JNI) are advanced topics — revisit after Phase 3 (OOP) once the rest of the language is grounded.
+    - Metaspace (replaced PermGen in Java 8)
+    - String Constant Pool (in Heap since Java 7)
 
 ### 3. Java Basics
 
-- Java Naming Conventions (Packages, Classes, Interfaces, Variables, Methods, Keywords)
-- Java Library Packages (Core and Advanced Packages)
-- `import` Statement
-- `package` Statement
-- `main` Method Signature (`public static void main(String[] args)`)
-- Parameters vs Arguments
-- Command-Line Arguments
-    - How to pass them while executing code
+- Program Structure
+    - Hello World
+    - `main` Method Signature
+    - Command-Line Arguments
+    - Parameters vs Arguments
+- Statements, Expressions & Blocks
+- Identifiers, Keywords & Naming Conventions
+    - Identifier Rules
+    - Reserved Keywords
+    - Naming Conventions
+- Comments
+    - Single-line `//`
+    - Multi-line `/* */`
+    - Javadoc `/** */`
+- Packages and Imports
+    - `package` Statement
+    - `import` Statement
+    - Static Imports
+    - Java Library Packages
 
-### 4. Data Types & Variables
+### 4. Variables & Data Types
 
-- Primitive Data Types: Type, Size, Description, Default Value, Wrapper Class
-- Non-Primitive Data Types: Strings, Arrays, Classes, Interfaces, Enums
-- Enums
-    - Enum Constants
-    - Enums with Constructors and Methods
-    - Enums in `switch` Statements
+- Variables
+    - Declaration and Initialization
+    - Scope and Lifetime (Local, Instance, Static; instance vars auto-init, locals don't) → [12. Classes, Objects & OOP Foundations](<12. Classes, Objects & OOP Foundations.md>)
+    - `final` Keyword (basics) → [18. Important Keywords (Deep Dive)](<18. Important Keywords (Deep Dive).md>)
+    - `var` Keyword — Local Variable Type Inference (Java 10+)
+- Primitive Data Types (Type, Size, Range, Default Value)
+    - The 8 primitives: `byte`, `short`, `int`, `long`, `float`, `double`, `char`, `boolean`
+- Literals
+    - Types: Integer, Character, String, Boolean
+    - Integer formats — decimal, hex (`0x`), binary (`0b`), octal (`0`)
+    - Type suffixes — `L` (long), `f` (float), `d` (double)
+    - Underscore separators (`1_000_000`)
+    - Character literals — `'a'`, unicode escapes (`\uXXXX`)
+    - Escape sequences — `\n`, `\t`, `\\`, `\'`, `\"`
+- Wrapper Classes (one-to-one with primitives; for Collections, nullability, `Number` API) → [Operators — Autoboxing](<05. Operators & Type System.md#Boxing, Unboxing, and Auto-Boxing>), [Numbers — java.lang.Number](<10. Numbers, Math & Random.md#`java.lang.Number` — the numeric root>)
+- Non-Primitive Data Types
+    - Strings → [9. Strings](<09. Strings.md>)
+    - Arrays → [8. Arrays](<08. Arrays.md>)
+    - Classes → [12. Classes, Objects & OOP Foundations](<12. Classes, Objects & OOP Foundations.md>)
+    - Interfaces → [16. Abstraction & Interfaces](<16. Abstraction & Interfaces.md>)
+    - Enums → [21. Enums](<21. Enums.md>)
 
 ### 5. Operators & Type System
 
 - Operators: Arithmetic, Unary, Assignment, Relational, Logical, Bitwise, Shift, Ternary, `instanceof`
+- Operator Precedence
 - Typecasting
     - Widening (Implicit)
     - Narrowing (Explicit)
+    - `char` ↔ `int`
+    - Compound assignment (implicit narrowing cast)
 - Type Promotion
-- Boxing, Auto-Boxing, and Unboxing
+- Boxing, Unboxing, and Auto-Boxing
+- Appendix
+    - Two's Complement
 
 ### 6. Control Statements
 
-- Conditional Statements (`if`, `if-else`, `else-if`, `switch`)
-- Iterative Statements (`for`, `while`, `do-while`, enhanced `for-each`)
-- Branching (Jumping) Statements (`break`, `continue`, `return`)
+- Conditional Statements
+    - `if` / `if-else` / `else-if`
+    - `switch` Statement
+    - `switch` Expressions (Java 14+) — arrow syntax, `yield`, exhaustiveness
+    - Pattern Matching in `switch` (Java 21+) — type patterns, guards
+- Iterative Statements
+    - `for`
+    - `while`
+    - `do-while`
+    - Enhanced `for-each`
+- Branching Statements
+    - `break`, `continue`, `return`
+    - Labeled `break` / `continue`
 
 ### 7. Java I/O Basics
 
-- Reading User Input: Scanner Class
-    - What is `System.in`?
-    - Methods: `next()`, `nextInt()`, `nextByte()`, `nextLine()`, etc.
-    - Gotcha with `nextLine()`
-    - Why Parse Methods on Wrapper Classes
-- Printing Output: PrintStream Class
-    - `System.out.println()`, `System.out.print()`, `System.out.printf()`
+- Reading User Input
+    - `Scanner` Class
+        - `System.in`
+        - `next()`, `nextInt()`, `nextLine()`, etc.
+        - `nextLine()` Gotcha
+        - Parsing Input with Wrapper Classes
+    - `Console` Class (`readPassword()` for hidden input)
+- Printing Output
+    - `PrintStream` Class
+    - `System.out.println()`, `print()`, `printf()`
+    - Format specifiers → [Numbers — Parsing and Formatting](<10. Numbers, Math & Random.md#Parsing and formatting>)
 
 ---
 
 ## Phase 2: Common Types & Error Handling
 
----
-
 ### 8. Arrays
 
-- Single-Dimensional Arrays
+- Declaration & Initialization (Single-Dimensional)
 - Multi-Dimensional Arrays
-- Commonly Used Array Methods
-- `length` vs `length()`
+- `Arrays` Utility Class (`java.util.Arrays`)
+- `length` vs `length()` vs `size()`
+- Array Copying
+- Arrays and Generics
+- Varargs (Variable Arguments)
+- Common Array Patterns
 
 ### 9. Strings
 
-- Different String Classes and Properties
-- Immutability Behavior
-    - `String` Immutability: Common Confusions and Gotchas
+- String Basics
+- String Immutability
 - String Constant Pool
-    - Interning (`intern()` Method)
-- Commonly Used String Methods
+- `String` vs `StringBuilder` vs `StringBuffer`
+    - StringBuilder Key Methods
 - String Comparison
-- `String` vs `StringBuffer` vs `StringBuilder`
+- Commonly Used String Methods
+- String Conversion
+- String Concatenation Internals
+- Text Blocks (Java 15+)
+- Common String Patterns
 
-### 10. Exception Handling
+### 10. Numbers, Math & Random
+
+- `java.lang.Number` — abstract parent + summary of numeric classes
+- `java.lang.Math` — abs, min, max, pow, sqrt, log, trig, rounding (`round`/`floor`/`ceil`), `floorDiv`/`floorMod`, overflow-checked arithmetic (`addExact`, `toIntExact`)
+- `BigInteger` — arbitrary-precision integers (brief — rarely needed outside crypto/number theory)
+- `BigDecimal` — arbitrary-precision decimals, `RoundingMode`, scale
+- Parsing and Formatting (`parseInt`, `NumberFormat`, `DecimalFormat`)
+- Unsigned Operations (`Integer.toUnsignedLong`, `divideUnsigned`) — brief, for low-level protocols
+- Random Number Generation (`Random`, `ThreadLocalRandom`, `SplittableRandom`, `SecureRandom`)
+
+### 11. Exception Handling
 
 - Exception Hierarchy
-    - Throwable
-        - Error
-        - Exception
-- Define Exception Handling: `try`, `catch`, `finally`
 - Checked vs Unchecked Exceptions
-    - Built-in Unchecked Exceptions
-    - Built-in Checked Exceptions
-- `getMessage()` and `printStackTrace()` Methods
-- Handling Multiple Exceptions
-    - Multiple `catch` Blocks
-    - Single `catch` for Multiple Exceptions (Java 7+)
-- User-Defined Exceptions (preview — class + inheritance syntax covered in Phase 3)
-    - Custom Checked Exceptions
-    - Custom Unchecked Exceptions
-- Enhanced Try-With-Resources Statement
-- Common Exceptions (`NullPointerException`, `ArrayIndexOutOfBoundsException`, `IOException`, `SQLException`, etc.)
-- Exception Rethrowing
-- Exception Propagation
-- `throw` vs `throws` Keyword
-- Exception Best Practices
-    - Avoid Catching Generic `Exception`
-    - Always Handle Resources (or use Try-With-Resources)
-    - Prefer Custom Exceptions for Business Logic
+- try-catch-finally
+- try-with-resources (Java 7+)
+    - AutoCloseable vs Closeable
+- throw vs throws
+- Custom Exceptions
+- Exception Chaining (Wrapping)
+- Exception Methods
+- Exception Handling with Inheritance
+- Best Practices
 
 ---
 
 ## Phase 3: OOP
 
----
+### 12. Classes, Objects & OOP Foundations
 
-### 11. Classes, Objects & OOP Foundations
-
-- Core of OOP
-    - Classes
-    - Methods
-    - Attributes
-- Four Pillars of OOP
-    - Encapsulation
-    - Inheritance
-    - Polymorphism
-    - Abstraction
 - Class and Object
-- `new` Keyword (Object Creation)
+- `new` Keyword
+- Attributes (Instance Fields)
 - Methods (Static and Instance)
 - Blocks (Static and Instance)
-    - Difference Between Methods and Blocks
-- `static` Basics (Static Variables, Methods, Blocks)
-- Variable Types by Scope and Lifetime (Local, Instance, Static)
+    - Methods vs Blocks
+- `static` Basics
+- Variables Scope and Lifetime (Local, Instance, Static)
 - Constructors
     - Constructor Basics
     - Default Constructor
@@ -166,256 +193,319 @@
     - Constructor vs Instance Methods
     - Constructor vs Instance Blocks
     - Constructor vs Static Blocks
-    - No Concept of Static Constructor
+    - No Static Constructor
 - `this` Keyword
 - Coupling and Cohesion
+- Four Pillars of OOP (preview — full coverage in later chapters)
+    - Encapsulation → [13. Encapsulation & Access Control](<13. Encapsulation & Access Control.md>)
+    - Inheritance → [14. Inheritance & Relationships](<14. Inheritance & Relationships.md>)
+    - Polymorphism → [15. Polymorphism](<15. Polymorphism.md>)
+    - Abstraction → [16. Abstraction & Interfaces](<16. Abstraction & Interfaces.md>)
 
-### 12. Encapsulation & Access Control
+### 13. Encapsulation & Access Control
 
-- Access Modifiers (Private, Default, Protected, Public)
-- Private Variables, Methods, Constructors, Classes
+- Access Modifiers (private, default, protected, public)
 - Getter and Setter Methods
-- Mutable and Immutable Objects
-- Immutable Class
-- Singleton Class
+- Mutable vs Immutable Objects
+- Creating an Immutable Class (final class + private final fields + defensive copies)
+- Singleton Class (Eager, Bill Pugh, Double-Checked, Enum)
 
-### 13. Inheritance & Relationships
+### 14. Inheritance & Relationships
 
-- IS-A Relationship
 - `extends` Keyword
-- `super` Keyword (Parent Constructor Calls, Parent Method/Variable Access)
-- Types: Single, Multilevel, Hierarchical, Hybrid
-- Why Java Doesn't Support Multiple Inheritance (with classes)
+- `super` Keyword
+- Object Creation in Inheritance
+- Types of Inheritance
+    - Why Java Doesn't Support Multiple Inheritance
 - Generalization and Specialization
-- HAS-A Relationship
-    - Association
-        - Aggregation (Weak Association)
-        - Composition (Strong Association)
+- IS-A vs HAS-A Relationships
+    - Association, Aggregation, Composition
 
-### 14. Polymorphism
+### 15. Polymorphism
 
-- Compile-Time Polymorphism (Static/Early Binding)
-    - Method Overloading: Instance, Static, and Constructor Overloading
-        - Can Overload `main` Method
-- Runtime Polymorphism (Dynamic/Late Binding)
-    - Method Overriding: Only Instance Methods Can Be Overridden
-    - Static Method Hiding (Not Overriding)
+- Compile-Time Polymorphism — Method Overloading
+    - Overloading Resolution Priority
+    - Autoboxing + Widening Interaction
+- Runtime Polymorphism — Method Overriding
+    - `@Override` Annotation
+- Static Method Hiding (Not Overriding)
+- Polymorphism in Action
+- Overloading vs Overriding
 
-### 15. Abstraction & Interfaces
+### 16. Abstraction & Interfaces
 
 - Abstract Classes
-    - Rules and Roles
-    - Abstract Methods: Instance or Static?
-    - Difference Between Class and Abstract Class
+    - Abstract Methods
+    - Class vs Abstract Class
 - Interfaces
-    - Rules, `implements` Keyword
-    - Methods are Public by Default (can also be default, static, or private in Java 8+)
-    - Interface Variables: Static or Instance?
+    - Interface Variables
     - Can an Interface Have a Constructor?
-    - Concrete Methods in Interfaces (Java 8+)
-        - Default Methods
-        - Static Methods
-        - Private Methods (Java 9+)
-- Marker Interfaces (`Serializable`, `Cloneable`, `Remote`)
-- Comparison: Class vs Abstract Class vs Interface
+- Concrete Methods in Interfaces (Java 8+)
+    - Default Methods
+    - Static Methods
+    - Private Methods (Java 9+)
+- Default Method Conflict (Diamond Problem)
 - Multiple Inheritance with Interfaces
+- Marker Interfaces (`Serializable`, `Cloneable`, `Remote`)
+- Class vs Abstract Class vs Interface
+- Abstract Class vs Interface — When to Use
 
-### 16. Inner Classes, Interfaces & Abstract Classes
+### 17. Inner Classes, Interfaces & Abstract Classes
 
-- Inner Classes
-    - Member Inner Classes
-        - Static Member Inner Class
-        - Non-Static Member Inner Class
-    - Local Inner Classes
-    - Anonymous Inner Classes
+- Member Inner Classes
+    - Non-Static Member Inner Class
+    - Static Member Inner Class
+- Local Inner Class
+- Anonymous Inner Class
+    - Anonymous Class vs Lambda
 - Inner Interfaces
 - Inner Abstract Classes
+- When to Use Which Inner Class
 
-### 17. Important Keywords (Deep Dive)
+### 18. Important Keywords (Deep Dive)
 
-- `final`: Usage with Variables, Methods, Classes and Its Impact
+- `final`
+    - `final` Variable
+    - `final` Method
+    - `final` Class
+    - `final` Parameter
     - `final` vs Immutability
-- `this` (Advanced Usage: chaining, returning current instance)
-- `super` (Advanced Usage: constructor chaining, method access in inheritance hierarchy)
-- `static` (Deep Dive: Static Nested Classes, Static Imports, etc.)
+    - Blank Final Variable
+    - `static final` (Constants)
+- `this`
+    - Method Chaining (Fluent API)
+    - Passing Current Object
+    - `this` in Inner Class
+- `super`
+    - Constructor Chaining Up the Hierarchy
+    - Accessing Hidden Parent Method
+    - Accessing Hidden Parent Field
+    - `super` Cannot Be Used
+- `static`
+    - Static Nested Class
+    - Static Import
+    - Static Context Rules
+    - Static Initialization Order
+    - When to Use Static
 
-### 18. Annotations
+### 19. Annotations
 
-- What are Annotations?
+- What are Annotations
 - Built-in Annotations
     - `@Override`
     - `@Deprecated`
     - `@SuppressWarnings`
     - `@FunctionalInterface`
-- Meta-Annotations (`@Target`, `@Retention`, `@Inherited`, `@Documented`)
+- Meta-Annotations
+    - `@Target`
+    - `@Retention`
+    - `@Inherited`
+    - `@Documented`
+    - `@Repeatable`
 - Custom Annotations
+    - Reading Annotations at Runtime
 
-### 19. Object Class & Core Methods
+### 20. Object Class
 
 - `toString()`
-    - `System.out.println()` internally uses `toString()`
-- `equals()` Method
+- `equals()`
     - `==` vs `.equals()`
-- `hashCode()` Method
+- `hashCode()`
 - Contract Between `equals()` and `hashCode()`
     - Why `HashSet`/`HashMap` Depend on It
     - What Breaks if Not Overridden
+
+### 21. Enums
+
+- Declaration & Basics
+- Built-in methods (`values()`, `valueOf()`, `name()`, `ordinal()`)
+- Enums with Fields, Constructors, and Methods
+- Abstract Methods per Constant (Strategy Pattern)
+- Implementing Interfaces
+- Enums in `switch` (including pattern matching in Java 21+)
+- `EnumSet` and `EnumMap` (high-performance collections)
+- Enum as Singleton (Effective Java pattern)
+- Real-World Patterns (state, roles/permissions, feature flags, log levels)
 
 ---
 
 ## Phase 4: Collections & Generics
 
----
+### 22. Generics
 
-### 20. Generics
-
-- What are Generics?
-- How Generics Work
-- Generic Classes and Generic Methods
-- Bounded Type Parameters (`extends`, `super`)
+- Generic Class
+- Generic Method
+- Bounded Type Parameters (upper bound `extends`, multiple bounds with `&`)
 - Wildcards (`?`, `? extends T`, `? super T`)
+    - PECS — Producer Extends, Consumer Super
+- Wildcards vs Bounded Type Parameters
 - Type Erasure
-- Power of Generics and When They're Useful
+- Generic Interface
+- Generic Constructor
 
-### 21. Java Collection Framework
+### 23. Java Collection Framework
 
-- Collection Framework Hierarchy
-    - List, Queue, Set, Map Interfaces and Implementations
-- `Collection` vs `Collections`
-- `Iterable` and `Iterator`
-- Commonly Used Methods with Syntax
-- Internal Workings
-    - `ArrayList` Resizing
-    - `HashMap`: Buckets, Hashing, Collisions, Load Factor
-        - `HashMap` Null Key Behavior
-        - Java 8: LinkedList → Red-Black Tree Conversion (Treeification)
-- `Comparable` vs `Comparator` Interfaces
-    - `Comparable`: Natural Ordering (inside the class)
-    - `Comparator`: Custom Sorting (external)
-    - `compareTo()` Method
-- `equals()` and `hashCode()` in Collections (see Section 19 for contract details)
+- Hierarchy Overview
+- List (`ArrayList`, `LinkedList`, `Vector`, `Stack`)
+- Set (`HashSet`, `LinkedHashSet`, `TreeSet`)
+- Queue & Deque (`PriorityQueue`, `ArrayDeque`)
+- Map (`HashMap`, `LinkedHashMap`, `TreeMap`, `Hashtable`, `ConcurrentHashMap`)
+    - `HashMap` Internal Working
+- Iteration Techniques (`Iterator`, for-each, `forEach()`, `ListIterator`)
+- `Collections` Utility Class (sort, reverse, shuffle, fill, binarySearch)
+- `Comparable` vs `Comparator`
+- Arrays ↔ Collections Conversions
+- Bulk Operations (`addAll`, `removeAll`, `retainAll`, `removeIf`)
+- Fail-Fast vs Fail-Safe Iterators
+- Thread-Safe Collections (`ConcurrentHashMap`, `CopyOnWriteArrayList`, `BlockingQueue`)
+- Big-O Cheat Sheet
+- Quick Decision Guide
 
 ---
 
 ## Phase 5: Modern Java (Java 8+)
 
----
-
-### 22. Functional Programming (Java 8+)
+### 24. Functional Programming (Java 8+)
 
 - Functional Interfaces
+    - Built-in (`Predicate`, `Function`, `Consumer`, `Supplier`, Bi/Unary/Binary variants)
+    - Chaining Functional Interfaces
+    - Primitive Specialized Functional Interfaces (`IntPredicate`, `LongFunction`, etc.)
 - Lambda Expressions
-- Method References
-    - Reference to Constructor
-    - Reference to Instance Method
-    - Reference to Static Method
-- Consumer, Predicate, Function, Supplier Interfaces
+- Method References (static, instance-specific, instance-any, constructor)
+- Effectively Final Variables
 
-### 23. Streams API (Java 8+)
+### 25. Streams API (Java 8+)
 
-- What are Streams? (Stream vs Collection)
-- Lazy Evaluation: Intermediate Operations are Lazy, Terminal Triggers Execution
 - Creating Streams (`stream()`, `of()`, `generate()`, `iterate()`)
-- Intermediate Operations: `map()`, `filter()`, `sorted()`, `distinct()`, `limit()`, `flatMap()`
-- Terminal Operations: `collect()`, `reduce()`, `forEach()`, `count()`, `findFirst()`, `anyMatch()`
-- Collectors (`toList()`, `toSet()`, `toMap()`, `groupingBy()`, `joining()`)
+- Intermediate Operations (`filter`, `map`, `flatMap`, `sorted`, `distinct`, `limit`, `skip`)
+- Terminal Operations (`collect`, `forEach`, `reduce`, `count`, `findFirst`, `anyMatch`)
+- Optional (Companion to Streams)
+- Primitive Streams (`IntStream`, `LongStream`, `DoubleStream`)
 - Parallel Streams
-    - When to Use and When to Avoid
+- Common Stream Patterns
+- Stream Pipeline Order Matters
+- Short-Circuiting Operations
+- Stateless vs Stateful Operations
+- Stream Best Practices
 
 ---
 
 ## Phase 6: Concurrency, I/O & Networking
 
----
+### 26. Multithreading & Concurrency
 
-### 24. Multithreading & Concurrency
-
-- What is Multithreading? (Process vs Thread)
-- Creating Threads
-    - Extending `Thread` Class
-    - Implementing `Runnable` Interface
-    - `Thread` vs `Runnable`: When to Use Which
-- Thread Lifecycle (New → Runnable → Running → Blocked/Waiting → Terminated)
-- Thread Methods: `start()`, `run()`, `sleep()`, `join()`, `yield()`, `interrupt()`
-- Thread Priority
-- `synchronized` Keyword
-    - Method-Level vs Block-Level Synchronization
-    - Object-Level Locking vs Class-Level Locking
+- Creating Threads (`Thread`, `Runnable`, `Callable`)
+- Thread Lifecycle (NEW, RUNNABLE, BLOCKED, WAITING, TIMED_WAITING, TERMINATED)
+- Essential Thread Methods (`start`, `sleep`, `join`, `interrupt`, `yield`)
+    - Daemon vs User Threads
+- Synchronization — `synchronized` Keyword
 - `volatile` Keyword
-- Common Problems
-    - Race Condition
-    - Deadlock
-    - Starvation
-- Inter-Thread Communication: `wait()`, `notify()`, `notifyAll()`
-- Concurrency vs Parallelism
-- Synchronous vs Asynchronous Execution
-- ExecutorService and Thread Pools
-- Callable and Future
-- `CompletableFuture` (Asynchronous Programming)
+- `wait()`, `notify()`, `notifyAll()`
+- Locks (`ReentrantLock`, `ReadWriteLock`)
+- Atomic Classes (`AtomicInteger`, `LongAdder`, `LongAccumulator`)
+- Synchronizers (`CountDownLatch`, `CyclicBarrier`, `Semaphore`)
+- ExecutorService (Thread Pools)
+    - `ThreadPoolExecutor` (production-grade)
+- `CompletableFuture` (Java 8+)
+- Virtual Threads (Java 21+)
+- Concurrent Collections
+- Common Concurrency Problems (Deadlock, Livelock, Starvation, Race Condition)
 
-### 25. File Handling
+### 27. File Handling
 
-- File Class and Common Methods
-- Byte Streams: `FileInputStream`, `FileOutputStream`
-- Character Streams: `FileReader`, `FileWriter`
-- Buffered Streams: `BufferedReader`, `BufferedWriter`
-- Reading and Writing Files (line by line, entire file)
-- Try-With-Resources for File Handling
-- NIO (New I/O)
+- I/O Streams (byte vs character)
+- Reading & Writing Files
+    - Character Streams (`FileReader`, `FileWriter`, `PrintWriter`)
+    - Byte Streams (`FileInputStream`, `FileOutputStream`)
+- Buffered Streams (`BufferedReader`, `BufferedWriter`)
+- `java.nio.file` (Modern File API — Java 7+)
     - `Path` and `Paths`
-    - `Files` Utility Class (`readAllLines()`, `write()`, `copy()`, `move()`, `delete()`)
+    - `Files` Utility Class (`readString`, `readAllLines`, `write`, `copy`, `move`, `delete`)
+    - Stream-based File Reading (`Files.lines`, `Files.walk`)
+    - Modern Buffered Reading/Writing (`Files.newBufferedReader`, `Files.newBufferedWriter`)
+- `File` class (Legacy — `java.io`)
+- `try-with-resources` for I/O
+- `InputStreamReader` / `OutputStreamWriter` (Bridge)
+- Common I/O Patterns
+- `java.io.File` vs `java.nio.file`
 
-### 26. Serialization
+### 28. Serialization
 
-- What is Serialization and Deserialization?
-- `Serializable` Interface
-- `ObjectOutputStream` and `ObjectInputStream`
-- `serialVersionUID`: What and Why
-- `transient` Keyword (Excluding Fields from Serialization)
+- How to Serialize (`Serializable`, `ObjectOutputStream`, `ObjectInputStream`)
+- `serialVersionUID`
+- `transient` Keyword (excluding fields from serialization)
+- `static` Fields and Serialization
+- Inheritance and Serialization
 - Custom Serialization (`writeObject()`, `readObject()`)
+- `Externalizable` Interface
+- Serialization and Singleton (`readResolve`, enum singleton)
+- Modern Alternatives (JSON, Protobuf, Avro, Kryo)
 
-### 27. Java Networking
+### 29. Java Networking
 
 - `java.net` Package Overview
-- `InetAddress` Class
-- Sockets: `Socket` and `ServerSocket` (TCP)
-- `DatagramSocket` and `DatagramPacket` (UDP)
-- `URL` and `HttpURLConnection`
-- Client-Server Communication (Basic Example)
+- `InetAddress`
+- TCP Sockets (`Socket`, `ServerSocket`)
+- UDP Sockets (`DatagramSocket`, `DatagramPacket`)
+- `URL` and `HttpURLConnection` (legacy)
+- Modern HTTP Client (Java 11+) — `java.net.http.HttpClient`
 
 ---
 
-## Phase 7: Reference / Version Cheat Sheet
+## Phase 7: Reference & Deep Dives
 
----
+### 30. Java Modern Features (10–21+)
 
-### 28. Java Modern Features (Version-wise)
+> Features covered elsewhere are linked, not duplicated here.
 
-- **Java 5 – Type Safety & Convenience**
-    - Autoboxing/Unboxing (covered in Section 5)
-    - Enhanced `for-each` Loop (covered in Section 6)
-    - Generics (covered in Section 20)
-- **Java 8 – Cleaner & Expressive Code**
-    - Functional Interfaces (covered in Section 22)
-    - Lambda Expressions (covered in Section 22)
-    - Streams API (covered in Section 23)
-    - `Optional` Class
-- **Java 10**
-    - `var` Keyword (Local Variable Type Inference)
-- **Java 11 – Production Stability**
-    - LTS Release: What It Means
-    - HTTP Client (`java.net.http`)
-    - Garbage Collection Improvements (G1 GC as Default)
-- **Java 14**
-    - Switch Expressions
-- **Java 15**
-    - Text Blocks
-- **Java 16**
-    - Records
-    - Pattern Matching (`instanceof`)
-- **Java 17 – Less Boilerplate**
-    - Sealed Classes
-- **Java 21 / Java 25 – Scaling Better**
-    - Virtual Threads (Project Loom)
-    - Structured Concurrency
-    - Performance Improvements
+- **Java 5** (type safety)
+    - Autoboxing/Unboxing → [05. Operators & Type System](<05. Operators & Type System.md>)
+    - Enhanced `for-each` Loop → [06. Control Statements](<06. Control Statements.md>)
+    - Generics → [22. Generics](<22. Generics.md>)
+- **Java 8** (functional programming)
+    - Functional Interfaces, Lambda Expressions → [24. Functional Programming (Java 8+)](<24. Functional Programming (Java 8+).md>)
+    - Streams API, `Optional` → [25. Streams API (Java 8+)](<25. Streams API (Java 8+).md>)
+- **Java 10** — `var` Keyword
+- **Java 14** — Switch Expressions
+- **Java 15** — Text Blocks
+- **Java 16** — Records, Pattern Matching for `instanceof`
+- **Java 17** — Sealed Classes
+- **Java 21** — Virtual Threads, Structured Concurrency (preview)
+
+### 31. JVM Architecture & Memory Model (Deep Dive)
+
+> Advanced reference — revisit after Phase 3 (OOP). Basics → [02. JDK, JRE & JVM](<02. JDK, JRE & JVM.md>).
+
+- ClassLoader Subsystem
+    - Loading (Bootstrap, Extension/Platform, Application/System)
+    - Linking (Verification, Preparation, Resolution)
+    - Initialization
+    - Parent-first delegation model
+- Runtime Data Areas (Memory)
+    - Method Area / Metaspace (class metadata, static vars)
+    - Heap
+        - Young Generation (Eden, Survivor S0/S1)
+        - Old Generation
+        - String Constant Pool (in Heap since Java 7)
+    - Stack (per thread — local vars, frames)
+    - PC Register (per thread)
+    - Native Method Stack (per thread)
+- Execution Engine
+    - Interpreter vs JIT
+    - Tiered Compilation (C1 + C2)
+    - Garbage Collector
+        - Reachability analysis from GC Roots
+        - GC types: Serial, Parallel, G1 (default Java 9+), ZGC (Java 15+)
+        - Minor GC vs Major/Full GC
+        - Stop-The-World pauses
+        - `System.gc()` is a hint, `finalize()` deprecated
+- Object Creation Flow (class load → heap alloc → default init → constructor → stack reference)
+- String Memory (literal pool vs `new String(...)`)
+- JVM Flags (`-Xms`, `-Xmx`, `-Xss`, GC selection, heap dump on OOM)
+- Gotchas
+    - Stack vs Heap confusion
+    - PermGen vs Metaspace
+    - `OutOfMemoryError` variants (heap, metaspace, native thread, GC overhead)
+    - JIT warmup
+    - Memory leak causes

@@ -3,8 +3,6 @@
 
 ## Part 1: Node.js Fundamentals
 
----
-
 ### 1. Introduction to Node.js
 
 - What is Node.js? (Event-Driven, Non-Blocking I/O)
@@ -96,8 +94,6 @@
 ---
 
 ## Part 2: Building a Real-World App
-
----
 
 ### 14. Microservices vs Monolith
 

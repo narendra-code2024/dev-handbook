@@ -20,12 +20,12 @@ Personal learning notes and interview prep kit. Backend-leaning (Java / Spring B
 
 ## How to use
 
-**Preparing for a backend interview (3+ yr, product companies):**
-Start in [`interview-prep/3-plus-years-experience/`](interview-prep/3-plus-years-experience/). Files are numbered in study priority:
+**Preparing for a backend interview (3+ yr):**
+Start in [`interview-prep/3-years-experience/`](interview-prep/3-years-experience/). Files are numbered in study priority:
 
 1. Java → Spring Boot → System Design (core technical rounds)
-2. PHP Laravel (only if your stack uses it)
-3. DevOps Essentials → Frontend Essentials (awareness-level)
+2. PHP & Laravel (only if your stack uses it)
+3. DevOps → Frontend (awareness-level)
 4. Self Intro, Project & HR (always asked — don't skip)
 
 **Learning Spring Boot end-to-end:**
@@ -47,5 +47,5 @@ Start in [`interview-prep/3-plus-years-experience/`](interview-prep/3-plus-years
 
 ## Scope notes
 
-- **Backend-focused.** Frontend content is a safety net for backend devs, not deep frontend prep. A separate file ([`interview-prep/3-plus-years-experience/7. Frontend Deep Dive.md`](interview-prep/3-plus-years-experience/7.%20Frontend%20Deep%20Dive.md)) covers React-focused frontend prep in depth (JS fundamentals, React, HTML/CSS, and Node.js basics).
-- **Calibration** reflects a 3+ yr backend engineer targeting product companies. Level up or down for your own context.
+- **Backend-focused.** Frontend content is a safety net for backend devs, not deep frontend prep. The [`6. Frontend.md`](interview-prep/3-years-experience/6.%20Frontend.md) file serves both audiences: full coverage for frontend-heavy roles (JS fundamentals, React, HTML/CSS, Node.js basics) and a backend-focused quick-revision path table at the end.
+- **Calibration** reflects a 3+ yr backend engineer. Level up or down for your own context.

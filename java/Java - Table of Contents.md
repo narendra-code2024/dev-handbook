@@ -22,6 +22,8 @@
 - JDK vs JRE vs JVM
     - Compilation Flow (`.java` → `javac` → `.class` → JVM)
     - "Write Once, Run Anywhere"
+- JAR Files (library, executable, fat JAR)
+- Classpath (where JVM / `javac` look for `.class` files)
 - JVM Architecture (high-level)
     - ClassLoader Subsystem
     - Runtime Data Areas
